@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import paquete02.PlanPostPagoMinutos;
+import paquete02.PlanPostPagoMegas;
 
 /**
  *
@@ -21,7 +21,7 @@ public class EnlacePlanPostPagoMegas {
     public void establecerConexion() {  
 
         try {  
-            String url = "jdbc:sqlite:bd/base01.db";
+            String url = "jdbc:sqlite:bd/base02.db";
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
@@ -33,26 +33,25 @@ public class EnlacePlanPostPagoMegas {
         return conn;
     }
     
-    public void insertarPlan(PlanPostPagoMinutos plan) {  
+    public void insertarPlan(PlanPostPagoMegas plan) {  
   
         try{  
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
             plan.calcularPagoMensual();
-            String data = String.format("INSERT INTO tabla1 (nombresPropietario,"
+            String data = String.format("INSERT INTO tabla2 (nombresPropietario,"
                     + " cedulaPropietario, ciudadPropietario, marcaCelular, "
-                    + "modeloCelular, minutosNacionales, costoMinutoNacional, "
-                    + "minutosInternacionales, costoMinutoInternacional, pagoMensual) "
-                    + "values ('%s', '%s', '%s', '%s', '%s', %s,  %s,  %s,  %s,  %s)", 
+                    + "modeloCelular, megasEnGigas, costoGiga, "
+                    + "tarifaBase, pagoMensual) "
+                    + "values ('%s', '%s', '%s', '%s', '%s', %s,  %s,  %s, %s)", 
                     plan.obtenerNombresPropietario(), 
                     plan.obtenerCedulaPropietario(), 
                     plan.obtenerCiudadPropietario(), 
                     plan.obtenerMarcaCelular(), 
                     plan.obtenerModeloCelular(), 
-                    plan.obtenerMinutosNacionales(), 
-                    plan.obtenerCostoMinutoNacional(), 
-                    plan.obtenerMinutosInternacionales(), 
-                    plan.obtenerCostoMinutoInternacional(),
+                    plan.obtenerMegasEnGigas(), 
+                    plan.obtenerCostoGiga(), 
+                    plan.obtenerTarifaBase(), 
                     plan.obtenerPagoMensual());
             
             statement.executeUpdate(data);
@@ -64,20 +63,19 @@ public class EnlacePlanPostPagoMegas {
         }  
     }
     
-    public ArrayList<PlanPostPagoMinutos> obtenerDataPlan() {  
-        ArrayList<PlanPostPagoMinutos> lista = new ArrayList<>();
+    public ArrayList<PlanPostPagoMegas> obtenerDataPlan() {  
+        ArrayList<PlanPostPagoMegas> lista = new ArrayList<>();
         try{  
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = "Select * from tabla1";
+            String data = "Select * from tabla2";
             
             ResultSet rs = statement.executeQuery(data);
             while(rs.next()){
-                PlanPostPagoMinutos miPlan = new PlanPostPagoMinutos(
-                        rs.getDouble("minutosNacionales"),
-                        rs.getDouble("costoMinutoNacional"),
-                        rs.getDouble("minutosInternacionales"),
-                        rs.getDouble("costoMinutoInternacional"),
+                PlanPostPagoMegas miPlan = new PlanPostPagoMegas(
+                        rs.getDouble("megasEnGigas"),
+                        rs.getDouble("costoGiga"),
+                        rs.getDouble("tarifaBase"),
                         rs.getString("nombresPropietario"),
                         rs.getString("cedulaPropietario"),
                         rs.getString("ciudadPropietario"),

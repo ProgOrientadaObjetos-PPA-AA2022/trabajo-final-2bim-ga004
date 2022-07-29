@@ -19,8 +19,8 @@ public class Ejecutor {
         Scanner sc = new Scanner(System.in);
         boolean opInvalida = false;
         int op = 1;
-        EnlacePlanPostPagoMegas c1 = new EnlacePlanPostPagoMegas();
-        EnlacePlanPostPagoMinutos c2 = new EnlacePlanPostPagoMinutos();
+        EnlacePlanPostPagoMinutos c1 = new EnlacePlanPostPagoMinutos();
+        EnlacePlanPostPagoMegas c2 = new EnlacePlanPostPagoMegas();
         EnlacePlanPostPagoMinutosMegas c3 = new EnlacePlanPostPagoMinutosMegas();
         EnlacePlanPostPagoMinutosMegasEconomico c4 = new EnlacePlanPostPagoMinutosMegasEconomico();
         sc.useLocale(Locale.US);

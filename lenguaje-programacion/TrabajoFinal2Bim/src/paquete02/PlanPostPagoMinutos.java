@@ -67,7 +67,7 @@ public class PlanPostPagoMinutos extends PlanCelular {
     }
     
     public String toString() {
-        String cadena = String.format("%s\n(1) Plan Post Pago Megas\n"
+        String cadena = String.format("%s\n(1) Plan Post Pago Minutos\n"
                 + "%s"
                 + "Plan\n"
                 + "\tMinutos Nacionales: %.2f\n"

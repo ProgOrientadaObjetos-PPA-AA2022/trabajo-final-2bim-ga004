@@ -82,6 +82,7 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular {
                 + "\tCosto Minuto: %.2f\n"
                 + "\tMegas (En Gigas): %.2f\n"
                 + "\tCosto Giga: %.2f\n"
+                + "\tDescuento: %.2f\n"
                 + "\tPago mensual: %.2f\n",
                 "----------------------------------------",
                 super.toString(),
@@ -89,6 +90,7 @@ public class PlanPostPagoMinutosMegasEconomico extends PlanCelular {
                 costoMinuto,
                 megasEnGigas,
                 costoGiga,
+                descuento,
                 pagoMensual);
         return cadena;
     }
